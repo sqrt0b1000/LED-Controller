@@ -1,4 +1,12 @@
-# Schaltplatine Flur für WLED
+# LED Controller: Schaltplatine für WLED
+
+## Disclaimer
+
+Using this software and hardware is the users responsibility as it is not bug free.
+Therefore contributors of this repo are not reliable for anything
+including but not limited to spontaneous combustion of the entire led strip, the house and the inevitable heat death of the universe.
+
+Also see: [LICENSE](./LICENSE)
 
 ## Features
 
@@ -17,10 +25,10 @@
 
 ## Pins
 
-| IO Pin ESP | Board Output | Usage |
+| ESP Pin Name | Board Output | Usage |
 | ---------------:| ---------------:| ---------------:|
-| IO  1 | J  7 | IO Port / TX |
-| IO  3 | J  8 | IO Port / RX |
+| TXD0 | J  7 | GPIO1, U0TXD, CLK_OUT3, EMAC_RXD2 |
+| RXD0 | J  8 | GPIO3, U0RXD, CLK_OUT2 |
 | IO 18 | LED-Out | MOSFET Transisotr 12 V |
 | IO 19 | LED-Out | MOSFET Transisotr 12 V |
 | IO 21 | LED-Out | MOSFET Transisotr 12 V |
@@ -32,17 +40,13 @@
 | IO 27 | J 15 | MOSFET Transistor  5 V |
 | IO 26 | J 16 | MOSFET Transistor  5 V |
 | IO 25 | J 17 | MOSFET Transistor  5 V |
-|    | J | IO Port |
-|    | J | IO Port |
-|    | J | IO Port |
-|    | J | IO Port |
-|    | J | IO Port |
-|    | J | IO Port |
-|    | J | IO Port |
-|    | J | IO Port |
+| SENSOR_VN | J 4 | GPIO39, ADC1_CH3, RTC_GPIO3 |
+| SENSOR_VP | J 5 | GPIO36, ADC1_CH0, RTC_GPIO0 |
 | - | J  9 | Ground |
 |  - | J 10 | Power 3.3 V |
 |  - | J  2| Power  12 V |
+
+Für mehr Details siehe das Datasheet des Controllers: [Datasheet](./Datasheets/ESP32/esp32-wroom-32_datasheet_en.pdf))
 
 ## Probleme mit v01
 
@@ -58,6 +62,7 @@
 - mehr Pins für GND and 12 V
 - weitere Pins für freie IO Ports
 - Benennung und Beschriftung der Pins
+- verbinde benutzbare Pins, nicht (nicht 17-22, da diese intern vom ESP32 benutzt werden, und nicht verbunden sind)
 
 ## Flashen des ESP32
 
@@ -73,3 +78,16 @@ um diesen in den Boot-Modus zu versetzen.
 pio run -e esp32dev -t upload
 ´´´
 Nach erfolgreichem Flashen den ESP32 mit dem Reset-Button resetten.
+
+## Links
+
+### WLED
+
+- [WLED-Knowlege base](https://kno.wled.ge)
+- [WLED-Github](https://github.com/WLED/WLED)
+- [WLED-MM](https://github.com/MoonModules/WLED-MM): More advanced WLED with additional / experimental features
+
+### LED-FX (Audio-Reactive)
+
+- [LED-FX-Github](https://github.com/LedFx/LedFx)
+- [LED-FX-Documentation](https://docs.ledfx.app/en/latest/installing.html)
